@@ -9,8 +9,10 @@ import {
   import "bootstrap/dist/css/bootstrap.min.css";
   
   // PAGES
-  import Home from "../Home";
-  import Index from "../Index";
+  import Home from "./Pages/Home";
+  import Index from "./Pages/Index";
+  import Show from "./Pages/Show";
+  import FourOFour from "./Pages/FourOFour";
   
   // COMPONENTS
   
@@ -46,8 +48,11 @@ import {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/fitness" element={<Index />} />
+              <Route path='/songs/:index' element={<Show />} />
+              <Route path="*" element={<FourOFour />} />
             </Routes>
           </main>
+          <footer> <a target="_blank" href="https://icons8.com/icon/iBcuyRJD3XCc/gym-weights">Gym Weights</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> </footer>
         </Router>
       </div>
     );
