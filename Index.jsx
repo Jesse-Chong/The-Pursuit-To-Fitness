@@ -1,4 +1,4 @@
-import Fitnesss from "../Components/Fitness's";
+import Fitnesss from "./Fitness's";
 
 function Index() {
   const h2Style = {
@@ -13,3 +13,5 @@ function Index() {
 }
 
 export default Index;
+
+
