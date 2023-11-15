@@ -15,11 +15,12 @@ import Show from "./Pages/Show";
 import FourOFour from "./Pages/FourOFour";
 
 // COMPONENTS
+import './Components/Background.css'
 
 function App() {
 
   return (
-    <div className="App">
+    <div className="App background">
       <Router>
         <Navbar
           className="d-flex justify-content-between align-items-center"
