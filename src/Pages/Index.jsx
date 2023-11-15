@@ -6,7 +6,7 @@ function Index() {
   };
   return (
     <div className="Index">
-      <h2 style={h2Style}>Index</h2>
+      {/* <h2 style={h2Style}>Index</h2> */}
       <Fitnesss />
     </div>
   );

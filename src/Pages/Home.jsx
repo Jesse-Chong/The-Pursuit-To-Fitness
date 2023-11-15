@@ -1,12 +1,20 @@
 function Home() {
-  const h2Styles = {
-    textAlign: "center",
-    marginTop: "100px",
+  const containerStyle = {
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  };
+
+  const textCenterStyle = {
+    textAlign: 'center',
   };
 
   return (
-    <div className="Home">
-      <h2 style={h2Styles}>💪 Get ready to be on the pursuit to fitness. 🏋️‍♀️</h2>
+    <div style={containerStyle}>
+      <div style={textCenterStyle}>
+      <h2>💪 Get ready to be on the pursuit to fitness. 🏋️‍♀️</h2>
+    </div>
     </div>
   );
 }

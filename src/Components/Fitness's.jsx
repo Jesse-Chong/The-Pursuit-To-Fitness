@@ -25,6 +25,10 @@ function Fitnesss() {
 
   return (
     <section>
+            <h1
+        className="text-center"
+        style={{ background: "#333", color: "white", padding: "10px" }}
+      >Workouts</h1>
       <Table bordered hover>
         <thead>
           <tr>
