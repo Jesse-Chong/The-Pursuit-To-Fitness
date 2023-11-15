@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import capitalize from "./utility";
 
 function Fitness({ workout }) {
   const { workout_name, workout_type, workout_days, is_true } = workout;
@@ -23,9 +24,9 @@ function Fitness({ workout }) {
     <tr>
       <td>{is_true ? "✅" : "❌"}</td>
       <td>
-        <Link to={`/fitness/${workout.id}`}>{workout_name}</Link>
+        <Link to={`/fitness/${workout.id}`}>{capitalize(workout_name)}</Link>
       </td>
-      <td>{workout_type}</td>
+      <td>{capitalize(workout_type)}</td>
       <td>{calculateIntensity()}</td>
     </tr>
   );
