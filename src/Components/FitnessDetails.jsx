@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, Modal, Button } from "react-bootstrap";
+import capitalize from "./utility";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -33,7 +34,12 @@ function FitnessDetails() {
         fetch(`${API}/exercise/${id}`)
           .then((res) => res.json())
           .then((res) => {
-            setFitness(res);
+            const capitalizedFitness = {
+              ...res,
+              workout_name: capitalize(res.workout_name),
+              workout_type: capitalize(res.workout_type)
+            };
+            setFitness(capitalizedFitness);
           });
       } catch (error) {
         return error;
@@ -56,7 +62,7 @@ function FitnessDetails() {
             {fitness && (
               <>
                 <p>Name of exercise: {fitness.workout_name}</p>
-                <p>How many days a week: {fitness.workout_days}</p>
+                <p>How many days a week: {fitness.workout_days} days</p>
                 <p>Type of workout: {fitness.workout_type}</p>
                 <p>Did you skip? 👀: {fitness.is_true ? "✅" : "❌"}</p>
                 <div>
