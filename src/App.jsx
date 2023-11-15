@@ -48,7 +48,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/fitness" element={<Index />} />
-            <Route path="/fitness/:index" element={<Show />} />
+            <Route path="/fitness/:id" element={<Show />} />
             <Route path="*" element={<FourOFour />} />
           </Routes>
         </main>

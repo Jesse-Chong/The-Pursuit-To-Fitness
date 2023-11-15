@@ -5,14 +5,14 @@ import { Card } from "react-bootstrap";
 const API = import.meta.env.VITE_API_URL;
 
 function FitnessDetails() {
-  const [fitness, setFitness] = useState({ name: "" });
+  const [fitness, setFitness] = useState([]);
   let navigate = useNavigate();
-  let { index } = useParams();
+  let { id } = useParams();
 
   useEffect(() => {
     const fetchWorkout = async () => {
       try {
-        fetch(`${API}/fitness/${index}`)
+        fetch(`${API}/exercise/${id}`)
           .then((res) => res.json())
           .then((res) => {
             setFitness(res);
@@ -22,7 +22,7 @@ function FitnessDetails() {
       }
     };
     fetchWorkout();
-  }, [index]);
+  }, [id]);
 
   return (
     <>
@@ -40,7 +40,7 @@ function FitnessDetails() {
                 <p>Name of excerise: {fitness.workout_name}</p>
                 <p>How many days a week: {fitness.workout_days}</p>
                 <p>Type of workout: {fitness.workout_type}</p>
-                <p>Did you skip? 👀: {fitness.is_true}</p>
+                <p>Did you skip? 👀: {fitness.is_true ? "✅" : "❌"}</p>
 
                 <div>
                   <button

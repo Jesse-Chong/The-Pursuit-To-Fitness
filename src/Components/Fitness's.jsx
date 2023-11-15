@@ -28,9 +28,9 @@ function Fitnesss() {
       <Table bordered hover>
         <thead>
           <tr>
+            <th>Did you skip? 😗</th>
             <th>Name</th>
             <th>Workout Type</th>
-            <th>Did you skip? 😗</th>
           </tr>
         </thead>
         <tbody>
