@@ -13,6 +13,7 @@ import Home from "./Pages/Home";
 import Index from "./Pages/Index";
 import Show from "./Pages/Show";
 import FourOFour from "./Pages/FourOFour";
+import New from "./Pages/New";
 
 // COMPONENTS
 import './Components/Background.css'
@@ -41,7 +42,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/fitness" element={<Index />} />
-            <Route path="/fitness/:id" element={<Show />} />
+
+            <Route path="/fitness/:index" element={<Show />} />
+            <Route path="/fitness/new" element={<New />} />
+ main
             <Route path="*" element={<FourOFour />} />
           </Routes>
         </main>
