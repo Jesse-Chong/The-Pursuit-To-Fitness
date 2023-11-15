@@ -1,28 +1,28 @@
-// import { useState, useEffect } from "react";
-// import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
-// const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL;
 
 function FitnessDetails() {
   const [fitness, setFitness] = useState({ name: "" });
   let navigate = useNavigate();
-//   let { index } = useParams();
+  let { index } = useParams();
 
-// useEffect(() => {
-//   const fetchWorkout = async () => {
-//     try {
-//       fetch(`${API}/fitness/${index}`)
-//       .then(res => res.json())
-//       .then(res => {
-//         setFitness(res)
-//       })
-//     } catch (error) {
-//       return error
-//     }
-//   }
-//   fetchWorkout()
-// }, [index]) 
+  useEffect(() => {
+    const fetchWorkout = async () => {
+      try {
+        fetch(`${API}/fitness/${index}`)
+          .then((res) => res.json())
+          .then((res) => {
+            setFitness(res);
+          });
+      } catch (error) {
+        return error;
+      }
+    };
+    fetchWorkout();
+  }, [index]);
 
   return (
     <>

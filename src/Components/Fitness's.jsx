@@ -2,27 +2,26 @@ import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import Fitness from "./Fitness";
 
-// const API = import.meta.env.VITE_API_URL;
-// console.log(process.env)
+const API = import.meta.env.VITE_API_URL;
 
 function Fitnesss() {
   const [fitness, setFitness] = useState([]);
 
-  //   const fetchData = async () => {
-  //     try {
-  //       fetch(`${API}/fitness`)
-  //         .then(res => res.json())
-  //         .then(res => {
-  //           setFitness(res)
-  //         })
-  //     } catch (error) {
-  //       return error
-  //     }
-  //   }
+  const fetchData = async () => {
+    try {
+      fetch(`${API}/exercise`)
+        .then((res) => res.json())
+        .then((res) => {
+          setFitness(res);
+        });
+    } catch (error) {
+      return error;
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchData()
-  // }, [])
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <section>

@@ -1,4 +1,4 @@
-// import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function Fitness({ workout }) {
   const { workout_name, workout_type, is_true } = workout;
@@ -8,11 +8,9 @@ function Fitness({ workout }) {
   return (
     <tr>
       <td>{is_true ? "✅" : ""}</td>
-      {/* <td>
-        <Link to={`/fitness/${workout.id}`}>
-          {workout_name}
-        </Link>
-      </td> */}
+      <td>
+        <Link to={`/fitness/${workout.id}`}>{workout_name}</Link>
+      </td>
       <td>{workout_type}</td>
       <td>{is_true}</td>
     </tr>
