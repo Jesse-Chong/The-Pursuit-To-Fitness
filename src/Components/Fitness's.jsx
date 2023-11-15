@@ -36,6 +36,7 @@ function Fitnesss() {
             <th>Did you skip? 😗</th>
             <th>Name</th>
             <th>Workout Type</th>
+            <th>Intensity</th>
           </tr>
         </thead>
         <tbody>

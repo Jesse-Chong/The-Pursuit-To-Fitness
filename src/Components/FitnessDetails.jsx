@@ -73,6 +73,12 @@ function FitnessDetails() {
                   >
                     Back
                   </button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => navigate(`/fitness/${id}/edit`)}
+                  >
+                    Edit
+                  </button>
                 </div>
               </>
             )}
