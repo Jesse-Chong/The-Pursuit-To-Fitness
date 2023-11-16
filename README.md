@@ -5,11 +5,12 @@ Built With React
 1. Clone the repo
 2. npm install
 
+# Links
 Back-end repo : https://github.com/yulondawyatt/the-pursuit-to-fitness-backend
 Trello link : https://trello.com/b/x6drXd98/the-pursuit-to-fitness
 Excalidraw is in  public folder.
-Deployed frontend :
-Deployed backend :
+Deployed frontend : https://the-pursuit-to-fitness.netlify.app/
+Deployed backend : https://pursuit-to-fitness-api.onrender.com/
 
 (1) NavBar
 * The NavBar allows me to navigate to the index, new entry or homepage.
