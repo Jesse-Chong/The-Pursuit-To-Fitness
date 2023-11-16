@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
 const API = import.meta.env.VITE_API_URL;
 
-function Fitness_NewForm() {
+function Fitness_EditForm() {
+  let { id } = useParams();
   const navigate = useNavigate();
   const [fitness, setFitness] = useState({
     workout_name: "",
@@ -119,4 +120,4 @@ function Fitness_NewForm() {
   );
 }
 
-export default Fitness_NewForm;
+export default Fitness_EditForm

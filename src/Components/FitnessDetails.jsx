@@ -27,24 +27,26 @@ function FitnessDetails() {
       console.error('Error deleting fitness entry:', error.message);
     }
   };
-
   useEffect(() => {
     const fetchWorkout = async () => {
       try {
-        fetch(`${API}/exercise/${id}`)
-          .then((res) => res.json())
-          .then((res) => {
-            const capitalizedFitness = {
-              ...res,
-              workout_name: capitalize(res.workout_name),
-              workout_type: capitalize(res.workout_type)
-            };
-            setFitness(capitalizedFitness);
-          });
+        const response = await fetch(`${API}/exercise/${id}`);
+        const data = await response.json();
+        if (response.ok) {
+          const capitalizedFitness = {
+            ...data,
+            workout_name: capitalize(data.workout_name),
+            workout_type: capitalize(data.workout_type),
+          };
+          setFitness(capitalizedFitness);
+        } else {
+          console.error('Error in API response:', data);
+        }
       } catch (error) {
-        return error;
+        console.error('Error fetching workout:', error);
       }
     };
+  
     fetchWorkout();
   }, [id]);
 
