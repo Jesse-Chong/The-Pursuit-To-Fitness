@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Card } from "react-bootstrap";
+import { limitDaysToSeven } from "./utility";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -10,43 +11,39 @@ function Fitness_NewForm() {
     workout_name: "",
     workout_type: "",
     workout_days: 0,
-    is_true: false
+    is_true: false,
   });
 
   const handleTextChange = (event) => {
     setFitness({ ...fitness, [event.target.id]: event.target.value });
   };
 
-  // Update a fitness. Redirect to show view
-  const updateFitness = () => {
-    fetch(`${API}/exercise/${id}`, {
-      method: "PUT",
+  const createFitness = () => {
+    fetch(`${API}/exercise/`, {
+      method: "POST",
       body: JSON.stringify(fitness),
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((response) => {
-        navigate(`/fitness/${id}`);
+        navigate(`/fitness`);
       })
       .catch((error) => console.error("catch", error));
   };
 
-  // On page load, fill in the form with the fitness data
-  useEffect(() => {
-    fetch(`${API}/exercise/${id}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((responseJSON) => {
-        setFitness(responseJSON);
-      })
-      .catch((error) => console.error(error));
-  }, [id]);
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    updateFitness();
+    if (fitness.workout_days > 7) {
+      alert("Days cannot be more than 7");
+      return;
+    }
+    createFitness();
+  };
+
+  const handleDaysBlur = () => {
+    const limitedDays = limitDaysToSeven(fitness.workout_days);
+    setFitness({ ...fitness, workout_days: limitedDays });
   };
 
   return (
@@ -55,12 +52,12 @@ function Fitness_NewForm() {
         className="text-center"
         style={{ background: "#333", color: "white", padding: "10px" }}
       >
-        Edit
+        New Workout
       </h1>
       <div className="d-flex justify-content-center align-items-center">
-        <div className="Edit">
+        <div className="New">
           <Card className="border-5">
-          <Card.Body>
+            <Card.Body>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="workout_name" className="form-label">
@@ -87,6 +84,8 @@ function Fitness_NewForm() {
                     className="form-control"
                     placeholder="# of days a week"
                     onChange={handleTextChange}
+                    onBlur={handleDaysBlur}
+                    max="7"
                     required
                   />
                 </div>
@@ -108,13 +107,13 @@ function Fitness_NewForm() {
                   Save
                 </button>
               </form>
-              <Link to={`/fitness/${id}`}>
-                <button className="btn btn-secondary mt-2">Cancel</button>
+              <Link to={`/fitness/`}>
+                <button className="btn btn-secondary mt-2">Nevermind!</button>
               </Link>
             </Card.Body>
           </Card>
-          </div>
-    </div>
+        </div>
+      </div>
     </>
   );
 }

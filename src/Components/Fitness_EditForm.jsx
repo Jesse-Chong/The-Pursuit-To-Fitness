@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { Card } from "react-bootstrap";
+import { limitDaysToSeven } from "./utility";
 
 const API = import.meta.env.VITE_API_URL;
 
@@ -11,7 +12,7 @@ function Fitness_EditForm() {
     workout_name: "",
     workout_type: "",
     workout_days: 0,
-    is_true: false
+    is_true: false,
   });
 
   const handleTextChange = (event) => {
@@ -47,7 +48,17 @@ function Fitness_EditForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (fitness.workout_days > 7) {
+      alert("Days cannot be more than 7");
+      return;
+    }
     updateFitness();
+  };
+
+  // Whenever a user puts in a number more than 7 for days, automatically change the number to 7
+  const handleDaysBlur = () => {
+    const limitedDays = limitDaysToSeven(fitness.workout_days);
+    setFitness({ ...fitness, workout_days: limitedDays });
   };
 
   return (
@@ -61,7 +72,7 @@ function Fitness_EditForm() {
       <div className="d-flex justify-content-center align-items-center">
         <div className="Edit">
           <Card className="border-5">
-          <Card.Body>
+            <Card.Body>
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="workout_name" className="form-label">
@@ -88,6 +99,8 @@ function Fitness_EditForm() {
                     className="form-control"
                     placeholder="# of days a week"
                     onChange={handleTextChange}
+                    onBlur={handleDaysBlur}
+                    max="7"
                     required
                   />
                 </div>
@@ -114,10 +127,10 @@ function Fitness_EditForm() {
               </Link>
             </Card.Body>
           </Card>
-          </div>
-    </div>
+        </div>
+      </div>
     </>
   );
 }
 
-export default Fitness_EditForm
+export default Fitness_EditForm;

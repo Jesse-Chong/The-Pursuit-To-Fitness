@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import capitalize from "./utility";
 
-function Fitness({ workout }) {
-  const { workout_name, workout_type, workout_days, is_true } = workout;
+const API = import.meta.env.VITE_API_URL;
 
-  console.log(workout_name, workout_type, workout_days, is_true);
+function Fitness({ workout }) {
+  console.log(workout);
+  const { id, workout_name, workout_type, workout_days, is_true } = workout;
+  const [completionStatus, setCompletionStatus] = useState(is_true);
 
   const calculateIntensity = () => {
     if (workout_days >= 5 && workout_days <= 7) {
@@ -20,11 +23,32 @@ function Fitness({ workout }) {
     }
   };
 
+  const handleToggleCompletion = async () => {
+    try {
+      const response = await fetch(`${API}/exercise/${id}/completion`, {
+        method: "PUT",
+        body: JSON.stringify({ is_true: !completionStatus }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        setCompletionStatus((prevCompletionStatus) => !prevCompletionStatus);
+      }
+    } catch (error) {
+      console.error("Error updating fitness entry:", error);
+    }
+  };
+
   return (
     <tr>
-      <td>{is_true ? "✅" : "❌"}</td>
       <td>
-        <Link to={`/fitness/${workout.id}`}>{capitalize(workout_name)}</Link>
+        <button onClick={handleToggleCompletion}>
+          {completionStatus ? "✅" : "❌"}
+        </button>
+      </td>
+      <td>
+        <Link to={`/fitness/${id}`}>{capitalize(workout_name)}</Link>
       </td>
       <td>{capitalize(workout_type)}</td>
       <td>{calculateIntensity()}</td>
