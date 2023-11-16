@@ -16,15 +16,15 @@ function FitnessDetails() {
   const handleDelete = async () => {
     try {
       const response = await fetch(`${API}/exercise/${id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
       if (!response.ok) {
         throw new Error(`Server returned status: ${response.status}`);
       }
-      alert('Fitness entry deleted successfully');
-      navigate('/fitness');
+      alert("Fitness entry deleted successfully");
+      navigate("/fitness");
     } catch (error) {
-      console.error('Error deleting fitness entry:', error.message);
+      console.error("Error deleting fitness entry:", error.message);
     }
   };
   useEffect(() => {
@@ -40,13 +40,13 @@ function FitnessDetails() {
           };
           setFitness(capitalizedFitness);
         } else {
-          console.error('Error in API response:', data);
+          console.error("Error in API response:", data);
         }
       } catch (error) {
-        console.error('Error fetching workout:', error);
+        console.error("Error fetching workout:", error);
       }
     };
-  
+
     fetchWorkout();
   }, [id]);
 
@@ -68,8 +68,7 @@ function FitnessDetails() {
                 <p>Type of workout: {fitness.workout_type}</p>
                 <p>Did you skip? 👀: {fitness.is_true ? "✅" : "❌"}</p>
                 <div>
-
-                <button
+                  <button
                     className="btn btn-danger me-2"
                     onClick={handleShowDeleteModal}
                   >

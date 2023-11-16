@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Table, Container } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import Fitness from "./Fitness";
 
 const API = import.meta.env.VITE_API_URL;
@@ -25,11 +25,12 @@ function Fitnesss() {
 
   return (
     <section>
-            <h1
+      <h1
         className="text-center"
         style={{ background: "#333", color: "white", padding: "10px" }}
-      >Workouts</h1>
-          <Container>
+      >
+        Workouts
+      </h1>
       <Table bordered hover>
         <thead>
           <tr>
@@ -45,7 +46,6 @@ function Fitnesss() {
           ))}
         </tbody>
       </Table>
-      </Container>
     </section>
   );
 }

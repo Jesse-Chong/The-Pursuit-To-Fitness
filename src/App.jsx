@@ -1,10 +1,5 @@
 // DEPENDENCIES
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -17,10 +12,9 @@ import New from "./Pages/New";
 import Edit from "./Pages/Edit";
 
 // COMPONENTS
-import './Components/Background.css'
+import "./Components/Background.css";
 
 function App() {
-
   return (
     <div className="App background">
       <Router>
@@ -29,15 +23,20 @@ function App() {
           bg="dark"
           variant="dark"
         >
-            <Nav>
-              <Nav.Link href="/fitness">Workouts</Nav.Link>
-            </Nav>
-            <Link to="/" style={{ textDecoration: 'none' }}>
-              <Navbar.Brand className="text-center" style={{ fontSize: '30px', color: 'teal' }}>The Pursuit to Fitness</Navbar.Brand>
-            </Link>
-            <Nav>
-              <Nav.Link href="/fitness/new">New Fitness Entry</Nav.Link>
-            </Nav>
+          <Nav>
+            <Nav.Link href="/fitness">Workouts</Nav.Link>
+          </Nav>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Navbar.Brand
+              className="text-center"
+              style={{ fontSize: "30px", color: "teal" }}
+            >
+              The Pursuit to Fitness
+            </Navbar.Brand>
+          </Link>
+          <Nav>
+            <Nav.Link href="/fitness/new">New Fitness Entry</Nav.Link>
+          </Nav>
         </Navbar>
         <main>
           <Routes>
