@@ -27,9 +27,16 @@ function Fitness_NewForm() {
       },
     })
       .then((response) => {
-        navigate(`/fitness`);
+        if (!response.ok) {
+          throw new Error(`Failed to create fitness: ${response.statusText}`);
+        }
+        return response.json();
       })
-      .catch((error) => console.error("catch", error));
+      .then((createdFitness) => {
+        const createdFitnessId = createdFitness.id;
+        navigate(`/fitness/${createdFitnessId}`);
+      })
+      .catch((error) => console.error("Error creating fitness:", error));
   };
 
   const handleSubmit = (event) => {

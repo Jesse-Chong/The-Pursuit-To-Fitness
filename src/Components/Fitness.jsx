@@ -5,7 +5,6 @@ import capitalize from "./utility";
 const API = import.meta.env.VITE_API_URL;
 
 function Fitness({ workout }) {
-  console.log(workout);
   const { id, workout_name, workout_type, workout_days, is_true } = workout;
   const [completionStatus, setCompletionStatus] = useState(is_true);
 
